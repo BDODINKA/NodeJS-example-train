@@ -5,17 +5,22 @@ const rl = readline.createInterface({input, output});
 
 rl.write('100 10 12 15')
 
+let total = 0;
+
 rl.on('line', (data) => {
-    const variables = data.split(' ').map((el) => +el)
+    const variables = data.split(' ')
 
     if (variables[1] < variables[3]) {
         const res = variables
-        console.log(res[0] + (res[3] - res[1]) * res[2])
-        process.exit(0);
+        total = +res[0] + ((res[3] - res[1]) * res[2])
     } else {
-        console.log(variables[0])
-        process.exit(0);
+        total = +variables[0]
     }
     rl.close();
 });
+
+rl.on("close", () => {
+    console.log(total);
+});
+
 
